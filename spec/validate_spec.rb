@@ -15,6 +15,7 @@ describe "Validate" do
     it "should return a string for validated numbers" do
       @valid.each do |number|
         Validate::Validate.is_phone_number(number).should.not.be.nil 
+        Validate::Validate.is_phone_number(number).class.should.be.same_as String      
       end
     end
 
@@ -37,6 +38,7 @@ describe "Validate" do
 
       @valid.each do |email|
         Validate::Validate.is_email_address(email).should.not.be.nil
+        Validate::Validate.is_email_address(email).class.should.be.same_as String      
       end
 
     end
@@ -63,6 +65,7 @@ describe "Validate" do
     it "should return a string for valid usernames" do
       @valid.each do |username| 
         Validate::Validate.is_username(username).should.not.be.nil
+        Validate::Validate.is_username(username).class.should.be.same_as String
       end
     end
 

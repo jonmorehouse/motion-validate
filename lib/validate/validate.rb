@@ -12,7 +12,11 @@ module Validate
 
       REGEX.each do |key, value|
         define_method key do |input|
-          return input.match(REGEX[key])
+          if input = input.match(REGEX[key])
+            return input.string
+          else
+            return nil
+          end
         end
         alias_method "is_#{key.to_s}", key
       end
