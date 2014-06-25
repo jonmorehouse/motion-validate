@@ -58,6 +58,17 @@ Validate::Validate.phone_number(phone_number) # => "1+ (513) 410-7771"
 
 ~~~
 
+### Phone number cleansing
+
+Remove any and all non-numeric characters 
+
+~~~ ruby
+phone_number = "1 (513) 410-7771"
+
+Validate::Clean.phone_number(phone_number) # => 15134107771
+
+~~~
+
 ## Pipeline
 
 1. Ability to specify valid characters
