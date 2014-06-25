@@ -3,17 +3,22 @@ describe "Validate" do
   describe "phone number" do
 
     before do
-      @phone_numbers = [
-        '414)444-4121',
-        '(513) 410-7771',
-        '1 231 433-4444',
-      ]
-
+      @valid = ["414)444-4121",
+                "(513) 410-7771",
+                "1 231 433-4444",]
+      @invalid = ["414+444-4212",
+                  "not a number"]
     end
 
-    it "should return true for validated phone numbers" do
-      @phone_numbers.each do |number|
+    it "should return a string for validated numbers" do
+      @valid.each do |number|
         Validate::Validate.is_phone_number(number).should.not.be.nil 
+      end
+    end
+
+    it "should return nil for invalid numbers" do
+      @invalid.each do |number|
+        Validate::Validate.is_phone_number(number).should.be.nil
       end
     end
 
@@ -22,41 +27,48 @@ describe "Validate" do
   describe "email address" do
 
     before do
-
-      @emails = [
-        'morehousej09@gmail.com'
-      ]
-      @invalid_emails = [
-        'morehousej09gmail.com'
-      ]
-
+      @valid = ["morehousej09@gmail.com"]
+      @invalid = ["morehousej09gmail.com"]
     end
 
     it "should return a string for valid email addresses" do
 
-      @emails.each do |email|
+      @valid.each do |email|
         Validate::Validate.is_email_address(email).should.not.be.nil
       end
 
     end
 
     it "shoud return nil for invalid email addresses" do
-
-      @invalid_emails.each do |email|
+      @invalid.each do |email|
         Validate::Validate.is_email_address(email).should.be.nil
       end
     end
   end
 
-  describe "username" do
+  describe "usernames" do
 
     before do
+      @valid = ["morehousej09", 
+                "123", 
+                "123456789111315"]
 
-
-
+      @invalid = ["1234567891011121314151617", 
+                  "12", 
+                  "jon!"]
     end
 
-  end
+    it "should return a string for valid usernames" do
+      @valid.each do |username| 
+        Validate::Validate.is_username(username).should.not.be.nil
+      end
+    end
 
+    it "should return nil for invalid usernames" do
+      @invalid.each do |username|
+        Validate::Validate.is_username(username).should.be.nil
+      end
+    end
+  end
 
 end
